@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.contact_book.app-mergeDebugResources-21:/values-lo/values-lo.xml",
+            "outputFile": "com.example.contact_book.app-mergeDebugResources-26:/values-lo/values-lo.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\caioc\\.gradle\\caches\\transforms-3\\2f6a5506f4dac22f7ab67b13b215ea43\\transformed\\core-1.13.1\\res\\values-lo\\values-lo.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,151,254,353,451,552,650,761",
-                        "endColumns": "95,102,98,97,100,97,110,100",
-                        "endOffsets": "146,249,348,446,547,645,756,857"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,13",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,151,254,353,451,552,650,1172",
-                        "endColumns": "95,102,98,97,100,97,110,100",
-                        "endOffsets": "146,249,348,446,547,645,756,1268"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\caioc\\.gradle\\caches\\transforms-3\\8bb96117b0f09282d9100503ae2b9eab\\transformed\\browser-1.8.0\\res\\values-lo\\values-lo.xml",
+                    "source": "C:\\Users\\caioc\\.gradle\\caches\\transforms-3\\b4e4ef13627bf6f9133e3fb4635c024f\\transformed\\browser-1.8.0\\res\\values-lo\\values-lo.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -35,6 +18,23 @@
                         "startOffsets": "761,859,957,1072",
                         "endColumns": "97,97,114,99",
                         "endOffsets": "854,952,1067,1167"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\caioc\\.gradle\\caches\\transforms-3\\fac84cd5ecf1ec88a8c98571217c9350\\transformed\\core-1.13.1\\res\\values-lo\\values-lo.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,151,254,353,451,552,650,761",
+                        "endColumns": "95,102,98,97,100,97,110,100",
+                        "endOffsets": "146,249,348,446,547,645,756,857"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,13",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,151,254,353,451,552,650,1172",
+                        "endColumns": "95,102,98,97,100,97,110,100",
+                        "endOffsets": "146,249,348,446,547,645,756,1268"
                     }
                 }
             ]

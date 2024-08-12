@@ -102,46 +102,60 @@ class _ContactPageState extends State<ContactPage> {
         ),
         body: Column(
           children: [
-            TextField(
-              controller: _nameController,
-              focusNode: _nameFocus,
-              decoration: const InputDecoration(
-                label: Text("Nome"),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: _nameController,
+                focusNode: _nameFocus,
+                decoration: const InputDecoration(
+                  label: Text("Nome"),
+                  border: OutlineInputBorder(
+                    
+                  )
+                ),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0),
+                onChanged: (text) {
+                  _userEdited = true;
+                  setState(() {
+                    _editedContact?.name = text;
+                  });
+                },
               ),
-              style:
-                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0),
-              onChanged: (text) {
-                _userEdited = true;
-                setState(() {
-                  _editedContact?.name = text;
-                });
-              },
             ),
-            TextField(
-              controller: _emailController,
-              decoration: const InputDecoration(
-                label: Text("Email"),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: _emailController,
+                decoration: const InputDecoration(
+                  label: Text("Email"),
+                  border: OutlineInputBorder()
+                ),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0),
+                onChanged: (text) {
+                  _userEdited = true;
+                  _editedContact?.phone = text;
+                },
+                keyboardType: TextInputType.emailAddress,
               ),
-              style:
-                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0),
-              onChanged: (text) {
-                _userEdited = true;
-                _editedContact?.phone = text;
-              },
-              keyboardType: TextInputType.emailAddress,
             ),
-            TextField(
-              controller: _phoneController,
-              decoration: const InputDecoration(
-                label: Text("Telefone"),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: _phoneController,
+                decoration: const InputDecoration(
+                  label: Text("Telefone"),
+                  border: OutlineInputBorder()
+                ),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0),
+                keyboardType: TextInputType.phone,
+                onChanged: (text) {
+                  _userEdited = true;
+                  _editedContact?.email = text;
+                },
               ),
-              style:
-                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0),
-              keyboardType: TextInputType.phone,
-              onChanged: (text) {
-                _userEdited = true;
-                _editedContact?.email = text;
-              },
             ),
           ],
         ),

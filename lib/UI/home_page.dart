@@ -4,6 +4,8 @@ import 'package:contact_book/UI/contact_page.dart';
 import 'package:contact_book/helpers/contact_helper.dart';
 import 'package:flutter/material.dart';
 
+enum OrderOptions { orderAz, orderZa }
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -162,12 +164,32 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void _orderList(OrderOptions result){
+    switch(result){
+      case OrderOptions.orderAz: 
+        contacts.sort((a,b){
+          return a.name.toLowerCase().compareTo(b.name.toLowerCase());
+        });
+        break;
+      case OrderOptions.orderZa:
+        contacts.sort((a,b){
+          return b.name.toLowerCase().compareTo(a.name.toLowerCase());
+        });
+        break; 
+    }
+    setState(() {
+      
+    });
+  }
+
   @override
   void initState() {
     super.initState();
 
     _getAllContacts();
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -179,6 +201,21 @@ class _HomePageState extends State<HomePage> {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
         ),
         centerTitle: true,
+        actions: [
+          PopupMenuButton<OrderOptions>(
+            itemBuilder: (context) => <PopupMenuEntry<OrderOptions>>[
+              const PopupMenuItem<OrderOptions>(
+                child: Text('Ordenar de A-Z'),
+                value: OrderOptions.orderAz,
+              ),
+              const PopupMenuItem<OrderOptions>(
+                child: Text('Ordenar de Z-A'),
+                value: OrderOptions.orderZa,
+              )
+            ],
+            onSelected: _orderList,
+          )
+        ],
       ),
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(

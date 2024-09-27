@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.contact_book.app-mergeDebugResources-21:/values-night-v8/values-night-v8.xml",
+            "outputFile": "com.example.contact_book.app-mergeDebugResources-26:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\caioc\\Documents\\Curso_Flutter_Dart\\projects\\contact_book\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "C:\\Users\\caioc\\Documents\\Curso_Flutter_Dart\\contact_book\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

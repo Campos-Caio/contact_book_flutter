@@ -1,0 +1,1 @@
+ C:\\Users\\caioc\\Documents\\Curso_Flutter_Dart\\contact_book\\.dart_tool\\flutter_build\\1be93bf6773114d32d078f2590831780\\native_assets.yaml: 

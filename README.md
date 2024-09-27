@@ -4,6 +4,19 @@ This project is a Contact Book App developed in Flutter. The application allows 
 
 Este projeto é um Aplicativo de Agenda de Contatos desenvolvido em Flutter. O aplicativo permite aos usuários gerenciar uma lista de contatos com informações básicas, como nome, telefone e e-mail. Os usuários podem adicionar, editar e excluir contatos, e os dados são armazenados localmente usando SQLite.
 
+Requirements / Requisitos:
+Flutter SDK (latest stable version): You need to have Flutter installed on your machine..
+
+Flutter SDK (última versão estável): Você precisa ter o Flutter instalado em sua máquina. .
+
+Dart SDK: It comes with Flutter, but make sure your environment variables are set correctly.
+
+Dart SDK: Ele vem com o Flutter, mas certifique-se de que as variáveis de ambiente estão configuradas corretamente.
+
+SQLite Plugin: The app uses the sqflite plugin for data persistence.
+
+SQLite Plugin: O aplicativo usa o plugin sqflite para persistência de dados.
+
 Developed by Caio Campos.
 
 Desenvolvido por Caio Campos.

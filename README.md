@@ -4,6 +4,10 @@ This project is a Contact Book App developed in Flutter. The application allows 
 
 Este projeto é um Aplicativo de Agenda de Contatos desenvolvido em Flutter. O aplicativo permite aos usuários gerenciar uma lista de contatos com informações básicas, como nome, telefone e e-mail. Os usuários podem adicionar, editar e excluir contatos, e os dados são armazenados localmente usando SQLite.
 
+Developed by Caio Campos.
+
+Desenvolvido por Caio Campos.
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

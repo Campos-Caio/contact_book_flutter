@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.contact_book.app-mergeDebugResources-26:/values-en-rAU/values-en-rAU.xml",
+            "outputFile": "com.example.contact_book.app-mergeDebugResources-28:/values-en-rAU/values-en-rAU.xml",
             "map": [
                 {
                     "source": "C:\\Users\\caioc\\.gradle\\caches\\transforms-3\\4bd76a0c32aabefcdfd355161b939ac5\\transformed\\browser-1.8.0\\res\\values-en-rAU\\values-en-rAU.xml",

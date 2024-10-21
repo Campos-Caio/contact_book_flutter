@@ -7,6 +7,9 @@ const String nameColumn = "nameColumn";
 const String emailColumn = "emailColumn";
 const String phoneColumn = "phoneColumn";
 const String imgColumn = "imgColumn";
+const String loginTable = 'loginTable';
+const String usernameColumn = 'usernameColumn';
+const String passwordColumn = 'passwordColumn';
 
 class ContactHelper {
   static final ContactHelper _instance = ContactHelper.internal();
@@ -27,26 +30,34 @@ class ContactHelper {
   }
 
   Future<Database> initDb() async {
-    //Retorna o banco de dados
     final dataBasesPath = await getDatabasesPath();
     final path = join(dataBasesPath, 'contactsNew.db');
 
-    return await openDatabase(path, version: 1,
+    // Incrementa a versão do banco de dados para recriar as tabelas, se necessário
+    return await openDatabase(path, version: 2, // Incremento da versão
         onCreate: (Database db, int newerVersion) async {
       await db.execute(
           "CREATE TABLE $contactTable($idColumn INTEGER PRIMARY KEY, $nameColumn TEXT, $emailColumn TEXT, $phoneColumn TEXT, $imgColumn TEXT)");
+
+      await db.execute(
+          "CREATE TABLE $loginTable($usernameColumn TEXT PRIMARY KEY, $passwordColumn TEXT)");
+    }, onUpgrade: (Database db, int oldVersion, int newVersion) async {
+      // Recria a tabela se a versão do banco for aumentada
+      if (oldVersion < 2) {
+        await db.execute(
+          "CREATE TABLE IF NOT EXISTS $loginTable($usernameColumn TEXT PRIMARY KEY, $passwordColumn TEXT)");
+      }
     });
   }
 
   Future<Contact> saveContact(Contact contact) async {
-    Database dbContact = (await db)!; //obtem o Banco de dados
-    contact.id = await dbContact.insert(
-        contactTable, contact.toMap()); //Insere o ctt no banco de dados
-    return contact; // Retorna o contato
+    Database dbContact = (await db)!; 
+    contact.id = await dbContact.insert(contactTable, contact.toMap()); 
+    return contact;
   }
 
   Future<Contact?> getContact(int id) async {
-    Database dbContact = (await db)!; //obtem o Banco de dados
+    Database dbContact = (await db)!;
     List<Map> maps = await dbContact.query(contactTable,
         columns: [
           idColumn,
@@ -55,8 +66,8 @@ class ContactHelper {
           emailColumn,
           phoneColumn,
           imgColumn
-        ], //retorna todas as colunas
-        where: "$idColumn = ?", //somente do id selecionado!
+        ], 
+        where: "$idColumn = ?", 
         whereArgs: [id]);
     if (maps.length > 0) {
       return Contact.fromMap(maps.first);
@@ -66,34 +77,57 @@ class ContactHelper {
   }
 
   Future<int> deleteContact(int id) async {
-    Database dbContact = (await db)!; //obtem o Banco de dados
+    Database dbContact = (await db)!;
     return await dbContact
         .delete(contactTable, where: "$idColumn = ?", whereArgs: [id]);
   }
 
   Future<int> updateContact(Contact contact) async {
-    Database dbContact = (await db)!; //obtem o Banco de dados
+    Database dbContact = (await db)!;
     return await dbContact.update(contactTable, contact.toMap(),
         where: "$idColumn = ?", whereArgs: [contact.id]);
   }
 
   Future<List<Contact>> getAllContacts() async {
-    Database dbContact = (await db)!; // obtem o Banco de dados
+    Database dbContact = (await db)!; 
     List<Map> listMap = await dbContact.rawQuery("SELECT * FROM $contactTable");
-    List<Contact> listContact = listMap.map((map) => Contact.fromMap(map)).toList();
+    List<Contact> listContact =
+        listMap.map((map) => Contact.fromMap(map)).toList();
     return listContact;
   }
 
-
   Future<int?> getNumber() async {
-    Database dbContact = (await db)!; //obtem o Banco de dados
+    Database dbContact = (await db)!;
     return Sqflite.firstIntValue(await dbContact.rawQuery(
-        "SELECT COUNT (*) FROM $contactTable")); // Retorna a quantidade de elementos da tabela
+        "SELECT COUNT (*) FROM $contactTable"));
   }
 
   Future close() async {
-    Database dbContact = (await db)!; //obtem o Banco de dados
-    dbContact.close(); 
+    Database dbContact = (await db)!;
+    dbContact.close();
+  }
+
+  // Métodos relacionados ao login
+  Future<int> saveLogin(String username, String password) async {
+    Database dbLogin = (await db)!;
+    Map<String, dynamic> loginData = {
+      usernameColumn: username,
+      passwordColumn: password,
+    };
+    return await dbLogin.insert(loginTable, loginData);
+  }
+
+  Future<Map?> getLogin(String username, String password) async {
+    Database dbLogin = (await db)!;
+    List<Map> maps = await dbLogin.query(loginTable,
+        columns: [usernameColumn, passwordColumn],
+        where: "$usernameColumn = ? AND $passwordColumn = ?",
+        whereArgs: [username, password]);
+    if (maps.isNotEmpty) {
+      return maps.first;
+    } else {
+      return null;
+    }
   }
 }
 

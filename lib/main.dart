@@ -1,7 +1,7 @@
 import 'package:contact_book/UI/home_page.dart';
 import 'package:contact_book/UI/login_page.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -9,6 +9,8 @@ void main() {
     home: MyApp(),
   ));
 }
+
+final _storage = FlutterSecureStorage(); 
 
 class MyApp extends StatelessWidget {
   @override
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
   }
 
   Future<bool> _checkToken() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString('username') != null;
+    String? username = await _storage.read(key: "username");
+    return username != null;
   }
 }

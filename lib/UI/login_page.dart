@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:contact_book/helpers/contact_helper.dart';
 import 'home_page.dart';
 
@@ -11,6 +11,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _storage = FlutterSecureStorage(); 
   ContactHelper helper = ContactHelper();
 
   @override
@@ -21,8 +22,7 @@ class _LoginPageState extends State<LoginPage> {
 
   // Verificar se há token no SharedPreferences
   _checkLogin() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? username = prefs.getString('username');
+    String? username = await _storage.read(key: 'username');
     if (username != null) {
       _navigateToHome();
     }
@@ -33,10 +33,9 @@ class _LoginPageState extends State<LoginPage> {
         context, MaterialPageRoute(builder: (context) => HomePage()));
   }
 
-  // Guardar o token 
+  // Guardar o token
   _saveLogin(String username) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('username', username);
+    await _storage.write(key: "username", value: username);
     _navigateToHome();
   }
 
@@ -45,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
     String username = _usernameController.text;
     String password = _passwordController.text;
     //bloco try-catch para caso de algum erro ao tentar logar
-    try { 
+    try {
       var loginData = await helper.getLogin(username, password);
       if (loginData != null) {
         _saveLogin(username);
@@ -70,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
     String password = _passwordController.text;
 
     if (username.isNotEmpty && password.isNotEmpty) {
-      try { 
+      try {
         var existingUser = await helper.getLogin(username, password);
         if (existingUser != null) {
           ScaffoldMessenger.of(context).showSnackBar(

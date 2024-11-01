@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.contact_book.app-mergeDebugResources-28:/values-pt/values-pt.xml",
+            "outputFile": "com.example.contact_book.app-mergeDebugResources-27:/values-pt/values-pt.xml",
             "map": [
                 {
                     "source": "C:\\Users\\caioc\\.gradle\\caches\\transforms-3\\4bd76a0c32aabefcdfd355161b939ac5\\transformed\\browser-1.8.0\\res\\values-pt\\values-pt.xml",
